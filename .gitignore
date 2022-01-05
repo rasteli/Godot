@@ -1,2 +1,7 @@
 **/.import
 **/*.import
+
+**/*.cfg
+**/*.tres
+
+Builds/*.pck
