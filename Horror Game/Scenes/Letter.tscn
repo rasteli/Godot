@@ -1,0 +1,182 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://textures/letters/letter-mikhail-1.jpg" type="Texture" id=1]
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0, 0, 0, 0.54902 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.0901961, 0.0745098, 0.0745098, 0.952941 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://ubuntu/Ubuntu-B.ttf"
+
+[sub_resource type="DynamicFont" id=3]
+size = 25
+outline_color = Color( 0.407843, 0.929412, 0.317647, 0.254902 )
+use_filter = true
+font_data = SubResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=11]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="DynamicFontData" id=9]
+font_path = "res://ubuntu/Ubuntu-B.ttf"
+
+[sub_resource type="DynamicFont" id=12]
+size = 30
+use_filter = true
+font_data = SubResource( 9 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 30
+use_filter = true
+font_data = SubResource( 9 )
+
+[node name="Letter" type="CanvasLayer"]
+layer = 2
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Shadow" type="ColorRect" parent="Panel"]
+margin_left = 696.0
+margin_top = 231.0
+margin_right = 1174.0
+margin_bottom = 867.0
+color = Color( 0, 0, 0, 0.270588 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Panel"]
+position = Vector2( 930, 540 )
+texture = ExtResource( 1 )
+
+[node name="Preview" type="Panel" parent="Panel"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -300.0
+margin_top = -364.0
+margin_right = 238.0
+margin_bottom = 336.0
+rect_pivot_offset = Vector2( -1034, -64 )
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="Panel/Preview"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -249.0
+margin_top = -311.0
+margin_right = 249.0
+margin_bottom = 334.0
+custom_fonts/font = SubResource( 3 )
+text = "Mikhail,
+
+Whatever that beast is, it's locked here with me. I locked the trapdoor by disabling the access terminals. It's all dark and confuse, so I used my equipment to do so.
+
+I guess this is it for me. At least, I saved the outside world, right? Ah... I never thought this would be how I'd die. I hope this letter gets to you, Mikhail, it is my farwell. 
+
+It was an honor serving with you, my dearest friend.
+
+Maksim"
+align = 3
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel2" type="Panel" parent="Panel"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -452.0
+margin_top = -55.0
+margin_right = -412.0
+margin_bottom = -15.0
+custom_styles/panel = SubResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Panel/Panel2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 12 )
+text = "E"
+align = 1
+valign = 1
+
+[node name="PreviewLabel" type="Label" parent="Panel/Panel2"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 12.0
+margin_top = -35.0
+margin_right = 142.0
+margin_bottom = -1.0
+custom_fonts/font = SubResource( 10 )
+text = "PREVIEW"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel3" type="Panel" parent="Panel"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -222.0
+margin_top = -56.0
+margin_right = -153.0
+margin_bottom = -16.0
+custom_styles/panel = SubResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Panel/Panel3"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 12 )
+text = "ESC"
+align = 1
+valign = 1
+
+[node name="CancelLabel" type="Label" parent="Panel/Panel3"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 12.0
+margin_top = -34.0
+margin_right = 126.0
+custom_fonts/font = SubResource( 10 )
+text = "CANCEL"
+__meta__ = {
+"_edit_use_anchors_": false
+}

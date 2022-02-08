@@ -1,0 +1,54 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://textures/letters/letter-mikhail-1.jpg" type="Texture" id=1]
+[ext_resource path="res://Scenes/Letter.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Letter.gd" type="Script" id=3]
+[ext_resource path="res://shaders/silhouette.shader" type="Shader" id=4]
+[ext_resource path="res://Scenes/Interaction.tscn" type="PackedScene" id=5]
+
+[sub_resource type="PlaneMesh" id=1]
+size = Vector2( 0.5, 0.7 )
+
+[sub_resource type="ShaderMaterial" id=4]
+render_priority = 126
+shader = ExtResource( 4 )
+shader_param/color = Color( 0.0156863, 0.956863, 0.00784314, 1 )
+shader_param/bias = -1.0
+shader_param/enabled = 0
+shader_param/speed = 0.0
+
+[sub_resource type="SpatialMaterial" id=2]
+next_pass = SubResource( 4 )
+albedo_texture = ExtResource( 1 )
+emission_enabled = true
+emission = Color( 0.901961, 0.901961, 0.290196, 1 )
+emission_energy = 0.1
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="ConcavePolygonShape" id=5]
+data = PoolVector3Array( 0.25, 0, 0.35, -0.25, 0, 0.35, 0.25, 0, -0.35, -0.25, 0, 0.35, -0.25, 0, -0.35, 0.25, 0, -0.35 )
+
+[node name="LetterMesh" type="Spatial" groups=["collectible"]]
+script = ExtResource( 3 )
+
+[node name="Mesh" type="MeshInstance" parent="."]
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="LetterBody" type="StaticBody" parent="Mesh"]
+transform = Transform( 1.95158, 0, 0, 0, 1, 0, 0, 0, 2.45202, 0, 0, 0 )
+collision_layer = 16
+
+[node name="CollisionShape" type="CollisionShape" parent="Mesh/LetterBody"]
+transform = Transform( 0.742953, 0, 0, 0, 1, 0, 0, 0, 0.540664, 0, 0, 0 )
+shape = SubResource( 5 )
+
+[node name="Letter" parent="." instance=ExtResource( 2 )]
+
+[node name="Interaction" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0611798, 0 )
+visible = false

@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=2]
+
+[sub_resource type="StyleBoxFlat" id=15]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+
+[sub_resource type="DynamicFontData" id=16]
+font_path = "res://ubuntu/Ubuntu-B.ttf"
+
+[sub_resource type="DynamicFont" id=14]
+size = 90
+use_filter = true
+font_data = SubResource( 16 )
+
+[sub_resource type="QuadMesh" id=11]
+
+[sub_resource type="ViewportTexture" id=12]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="SpatialMaterial" id=13]
+resource_local_to_scene = true
+render_priority = 127
+flags_transparent = true
+flags_unshaded = true
+flags_no_depth_test = true
+params_billboard_mode = 1
+params_billboard_keep_scale = true
+albedo_texture = SubResource( 12 )
+
+[node name="Interaction" type="Spatial"]
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 100, 100 )
+transparent_bg = true
+usage = 0
+
+[node name="Control" type="Control" parent="Viewport"]
+margin_right = 70.0
+margin_bottom = 70.0
+
+[node name="Panel" type="Panel" parent="Viewport/Control"]
+margin_right = 100.0
+margin_bottom = 100.0
+custom_styles/panel = SubResource( 15 )
+
+[node name="Label" type="Label" parent="Viewport/Control/Panel"]
+margin_right = 100.0
+margin_bottom = 102.0
+custom_fonts/font = SubResource( 14 )
+text = "E"
+align = 1
+valign = 1
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 0.113175, 0, 0, 0, 0.123933, 0, 0, 0, 0.757046, 0, 0, 0 )
+mesh = SubResource( 11 )
+material/0 = SubResource( 13 )

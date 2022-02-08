@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scripts/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://Sounds/music & loops/thrilling-soundscrate.mp3" type="AudioStream" id=2]
+[ext_resource path="res://Sounds/sfx/chase_steps.mp3" type="AudioStream" id=3]
+
+[sub_resource type="CubeMesh" id=3]
+size = Vector3( 1, 1, 1 )
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 1, 0.333333, 0.333333, 1 )
+emission_enabled = true
+emission = Color( 1, 0.333333, 0.333333, 1 )
+emission_energy = 0.7
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="CapsuleMesh" id=1]
+radius = 0.6
+mid_height = 3.0
+
+[sub_resource type="CapsuleShape" id=2]
+radius = 0.656655
+height = 2.87097
+
+[node name="Enemy" type="KinematicBody"]
+collision_layer = 2
+script = ExtResource( 1 )
+
+[node name="Eye" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.205541, 0, 0, 0, 1.56422, 0, 1.49073, -0.0264702 )
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+shape = SubResource( 2 )
+disabled = true
+
+[node name="RayCast" type="RayCast" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.243875 )
+cast_to = Vector3( 0, 0, -1 )
+
+[node name="CooldownTimer" type="Timer" parent="."]
+
+[node name="ChasingTimer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+
+[node name="ChaseMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = 2.0
+bus = "Music"
+
+[node name="Footsteps" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 3 )
+unit_db = 80.0
+max_db = 6.0
+max_distance = 30.0
+bus = "SFX"

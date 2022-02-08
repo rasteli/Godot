@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Sounds/sfx/flashlight_zapsplat.mp3" type="AudioStream" id=1]
+[ext_resource path="res://Scenes/PlayerBody.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sounds/sfx/pickup_soundscrate.mp3" type="AudioStream" id=3]
+
+[node name="Player" type="Spatial" groups=["player"]]
+
+[node name="PlayerBody" parent="." instance=ExtResource( 2 )]
+
+[node name="FlashlightHolder" type="Spatial" parent="."]
+transform = Transform( -0.7, 0, 8.74228e-08, 0, 0.7, 0, -6.11959e-08, 0, -1, 0, 0.791653, 0.3379 )
+visible = false
+
+[node name="SpotLight" type="SpotLight" parent="FlashlightHolder"]
+transform = Transform( 1.42857, 0, 4.68958e-13, 0, 1.42857, 0, -2.41585e-13, 0, 1, 0.220166, -0.222273, 0 )
+spot_range = 12.6853
+spot_angle = 30.9375
+
+[node name="Flashlight" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+bus = "SFX"
+
+[node name="Pickup" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = 2.0
+bus = "SFX"

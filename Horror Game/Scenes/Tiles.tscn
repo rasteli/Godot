@@ -1,0 +1,80 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://textures/floor/DiamondPlate002_2K_Color.png" type="Texture" id=1]
+[ext_resource path="res://textures/floor/DiamondPlate002_2K_Metalness.png" type="Texture" id=3]
+[ext_resource path="res://textures/floor/DiamondPlate002_2K_Roughness.png" type="Texture" id=5]
+[ext_resource path="res://textures/floor/DiamondPlate002_2K_NormalGL.png" type="Texture" id=7]
+[ext_resource path="res://textures/wall/Metal023_2K_Color.png" type="Texture" id=8]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 2, 24, 2 )
+
+[sub_resource type="SpatialMaterial" id=9]
+albedo_texture = ExtResource( 8 )
+metallic_texture = ExtResource( 3 )
+roughness_texture = ExtResource( 5 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 7 )
+uv1_scale = Vector3( 0.5, 0.5, 0.5 )
+uv1_triplanar = true
+
+[sub_resource type="ConcavePolygonShape" id=10]
+data = PoolVector3Array( -1, 12, 1, 1, 12, 1, -1, -12, 1, 1, 12, 1, 1, -12, 1, -1, -12, 1, 1, 12, -1, -1, 12, -1, 1, -12, -1, -1, 12, -1, -1, -12, -1, 1, -12, -1, 1, 12, 1, 1, 12, -1, 1, -12, 1, 1, 12, -1, 1, -12, -1, 1, -12, 1, -1, 12, -1, -1, 12, 1, -1, -12, -1, -1, 12, 1, -1, -12, 1, -1, -12, -1, 1, 12, 1, -1, 12, 1, 1, 12, -1, -1, 12, 1, -1, 12, -1, 1, 12, -1, -1, -12, 1, 1, -12, 1, -1, -12, -1, 1, -12, 1, 1, -12, -1, -1, -12, -1 )
+
+[sub_resource type="CubeMesh" id=11]
+size = Vector3( 2, 12, 2 )
+
+[sub_resource type="SpatialMaterial" id=30]
+albedo_texture = ExtResource( 8 )
+metallic_texture = ExtResource( 3 )
+roughness_texture = ExtResource( 5 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 7 )
+uv1_scale = Vector3( 0.5, 0.5, 0.5 )
+uv1_triplanar = true
+
+[sub_resource type="ConcavePolygonShape" id=31]
+data = PoolVector3Array( -1, 6, 1, 1, 6, 1, -1, -6, 1, 1, 6, 1, 1, -6, 1, -1, -6, 1, 1, 6, -1, -1, 6, -1, 1, -6, -1, -1, 6, -1, -1, -6, -1, 1, -6, -1, 1, 6, 1, 1, 6, -1, 1, -6, 1, 1, 6, -1, 1, -6, -1, 1, -6, 1, -1, 6, -1, -1, 6, 1, -1, -6, -1, -1, 6, 1, -1, -6, 1, -1, -6, -1, 1, 6, 1, -1, 6, 1, 1, 6, -1, -1, 6, 1, -1, 6, -1, 1, 6, -1, -1, -6, 1, 1, -6, 1, -1, -6, -1, 1, -6, 1, 1, -6, -1, -1, -6, -1 )
+
+[sub_resource type="PlaneMesh" id=4]
+
+[sub_resource type="SpatialMaterial" id=8]
+albedo_color = Color( 0.952941, 0.623529, 0.623529, 1 )
+albedo_texture = ExtResource( 1 )
+metallic_texture = ExtResource( 3 )
+roughness_texture = ExtResource( 5 )
+normal_enabled = true
+normal_scale = 1.0
+normal_texture = ExtResource( 7 )
+uv1_scale = Vector3( 2, 2, 2 )
+
+[node name="Tiles" type="Spatial"]
+
+[node name="Wall" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, 0 )
+mesh = SubResource( 1 )
+material/0 = SubResource( 9 )
+
+[node name="StaticBody" type="StaticBody" parent="Wall"]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall/StaticBody"]
+shape = SubResource( 10 )
+
+[node name="WallSmall" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5077, 5.9, 0 )
+mesh = SubResource( 11 )
+material/0 = SubResource( 30 )
+
+[node name="StaticBody" type="StaticBody" parent="WallSmall"]
+
+[node name="CollisionShape" type="CollisionShape" parent="WallSmall/StaticBody"]
+shape = SubResource( 31 )
+
+[node name="Floor" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.21787, 0, 0 )
+mesh = SubResource( 4 )
+material/0 = SubResource( 8 )

@@ -1,0 +1,434 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Scripts/SettingsMenu.gd" type="Script" id=1]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://ubuntu/Ubuntu-B.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 40
+use_filter = true
+font_data = SubResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+content_margin_right = 10.0
+bg_color = Color( 0.156863, 0.164706, 0.211765, 1 )
+expand_margin_left = 8.0
+
+[sub_resource type="StyleBoxFlat" id=4]
+content_margin_left = 10.0
+content_margin_right = 20.0
+bg_color = Color( 0.266667, 0.278431, 0.352941, 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.156863, 0.164706, 0.211765, 1 )
+
+[sub_resource type="DynamicFontData" id=6]
+font_path = "res://ubuntu/Ubuntu-B.ttf"
+
+[sub_resource type="DynamicFont" id=7]
+size = 64
+use_filter = true
+font_data = SubResource( 6 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 50
+use_filter = true
+font_data = SubResource( 6 )
+
+[sub_resource type="StyleBoxFlat" id=11]
+bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="DynamicFont" id=12]
+size = 50
+use_filter = true
+font_data = SubResource( 6 )
+
+[node name="SettingsMenu" type="Popup"]
+visible = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -859.0
+margin_top = -442.0
+margin_right = 859.0
+margin_bottom = 442.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.266667, 0.278431, 0.352941, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TabC" type="TabContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 2 )
+custom_styles/tab_fg = SubResource( 3 )
+custom_styles/tab_bg = SubResource( 4 )
+custom_styles/panel = SubResource( 5 )
+tab_align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Video" type="Tabs" parent="TabC"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 56.0
+
+[node name="MarginC" type="MarginContainer" parent="TabC/Video"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 30.0
+margin_right = -15.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridC" type="GridContainer" parent="TabC/Video/MarginC"]
+margin_right = 1688.0
+margin_bottom = 472.0
+size_flags_vertical = 0
+custom_constants/vseparation = 60
+custom_constants/hseparation = 1045
+columns = 2
+
+[node name="WindowLabel" type="Label" parent="TabC/Video/MarginC/GridC"]
+margin_right = 356.0
+margin_bottom = 73.0
+custom_fonts/font = SubResource( 7 )
+text = "Window"
+
+[node name="WindowOptBtn" type="OptionButton" parent="TabC/Video/MarginC/GridC"]
+margin_left = 1401.0
+margin_right = 1676.0
+margin_bottom = 73.0
+custom_colors/font_color_disabled = Color( 1, 0.47451, 0.776471, 1 )
+custom_colors/font_color_focus = Color( 1, 0.47451, 0.776471, 1 )
+custom_colors/font_color = Color( 1, 0.47451, 0.776471, 1 )
+custom_colors/font_color_hover = Color( 1, 0.47451, 0.776471, 1 )
+custom_colors/font_color_pressed = Color( 1, 0.47451, 0.776471, 1 )
+custom_fonts/font = SubResource( 8 )
+custom_styles/focus = SubResource( 11 )
+text = "Fullscreen"
+flat = true
+items = [ "Fullscreen", null, false, 0, null, "Windowed", null, false, 1, null ]
+selected = 0
+
+[node name="VsyncLabel" type="Label" parent="TabC/Video/MarginC/GridC"]
+margin_top = 133.0
+margin_right = 356.0
+margin_bottom = 206.0
+custom_fonts/font = SubResource( 7 )
+text = "Vsync"
+
+[node name="VsyncButton" type="CheckButton" parent="TabC/Video/MarginC/GridC"]
+margin_left = 1600.0
+margin_top = 133.0
+margin_right = 1676.0
+margin_bottom = 206.0
+size_flags_horizontal = 8
+custom_constants/hseparation = 0
+custom_styles/focus = SubResource( 11 )
+
+[node name="DisplayFPSLabel" type="Label" parent="TabC/Video/MarginC/GridC"]
+margin_top = 266.0
+margin_right = 356.0
+margin_bottom = 339.0
+custom_fonts/font = SubResource( 7 )
+text = "Display FPS"
+
+[node name="DisplayFPSBtn" type="CheckButton" parent="TabC/Video/MarginC/GridC"]
+margin_left = 1600.0
+margin_top = 266.0
+margin_right = 1676.0
+margin_bottom = 339.0
+size_flags_horizontal = 8
+custom_styles/focus = SubResource( 11 )
+
+[node name="CTREffect" type="Label" parent="TabC/Video/MarginC/GridC"]
+margin_top = 399.0
+margin_right = 356.0
+margin_bottom = 472.0
+custom_fonts/font = SubResource( 7 )
+text = "CTR Effect"
+
+[node name="DisplayCTRBtn" type="CheckButton" parent="TabC/Video/MarginC/GridC"]
+margin_left = 1600.0
+margin_top = 399.0
+margin_right = 1676.0
+margin_bottom = 472.0
+size_flags_horizontal = 8
+custom_styles/focus = SubResource( 11 )
+pressed = true
+
+[node name="Audio" type="Tabs" parent="TabC"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 56.0
+
+[node name="MarginC" type="MarginContainer" parent="TabC/Audio"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 30.0
+margin_right = -15.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridC" type="GridContainer" parent="TabC/Audio/MarginC"]
+margin_right = 1688.0
+margin_bottom = 339.0
+size_flags_vertical = 0
+custom_constants/vseparation = 60
+custom_constants/hseparation = 456
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MasterLabel" type="Label" parent="TabC/Audio/MarginC/GridC"]
+margin_right = 214.0
+margin_bottom = 73.0
+custom_fonts/font = SubResource( 7 )
+text = "Master"
+
+[node name="MasterSlider" type="HSlider" parent="TabC/Audio/MarginC/GridC"]
+margin_left = 670.0
+margin_top = 28.0
+margin_right = 1688.0
+margin_bottom = 44.0
+size_flags_vertical = 4
+min_value = -80.0
+max_value = 0.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MusicLabel" type="Label" parent="TabC/Audio/MarginC/GridC"]
+margin_top = 133.0
+margin_right = 214.0
+margin_bottom = 206.0
+custom_fonts/font = SubResource( 7 )
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="TabC/Audio/MarginC/GridC"]
+margin_left = 670.0
+margin_top = 161.0
+margin_right = 1688.0
+margin_bottom = 177.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = -60.0
+max_value = 0.0
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="SFXLabel" type="Label" parent="TabC/Audio/MarginC/GridC"]
+margin_top = 266.0
+margin_right = 214.0
+margin_bottom = 339.0
+custom_fonts/font = SubResource( 7 )
+text = "SFX"
+
+[node name="SFXSlider" type="HSlider" parent="TabC/Audio/MarginC/GridC"]
+margin_left = 670.0
+margin_top = 294.0
+margin_right = 1688.0
+margin_bottom = 310.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = -80.0
+max_value = 0.0
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Gameplay" type="Tabs" parent="TabC"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 56.0
+
+[node name="MarginC" type="MarginContainer" parent="TabC/Gameplay"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 30.0
+margin_right = -15.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridC" type="GridContainer" parent="TabC/Gameplay/MarginC"]
+margin_right = 1688.0
+margin_bottom = 206.0
+size_flags_vertical = 0
+custom_constants/vseparation = 60
+custom_constants/hseparation = 132
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FOVLabel" type="Label" parent="TabC/Gameplay/MarginC/GridC"]
+margin_right = 543.0
+margin_bottom = 73.0
+custom_fonts/font = SubResource( 7 )
+text = "FOV"
+
+[node name="FOVSlider" type="HSlider" parent="TabC/Gameplay/MarginC/GridC"]
+margin_left = 675.0
+margin_top = 28.0
+margin_right = 1688.0
+margin_bottom = 44.0
+size_flags_vertical = 4
+min_value = 20.0
+max_value = 120.0
+value = 90.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MouseSenLabel" type="Label" parent="TabC/Gameplay/MarginC/GridC"]
+margin_top = 133.0
+margin_right = 543.0
+margin_bottom = 206.0
+custom_fonts/font = SubResource( 7 )
+text = "Mouse Sensitivity"
+
+[node name="MouseSenSlider" type="HSlider" parent="TabC/Gameplay/MarginC/GridC"]
+margin_left = 675.0
+margin_top = 161.0
+margin_right = 1688.0
+margin_bottom = 177.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 0.1
+max_value = 1.0
+step = 0.1
+value = 0.2
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Controls" type="Tabs" parent="TabC"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 56.0
+
+[node name="MarginC" type="MarginContainer" parent="TabC/Controls"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 15.0
+margin_top = 30.0
+margin_right = -15.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridC" type="GridContainer" parent="TabC/Controls/MarginC"]
+margin_right = 1688.0
+margin_bottom = 605.0
+size_flags_vertical = 0
+custom_constants/vseparation = 60
+custom_constants/hseparation = 1053
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MovementLabel" type="Label" parent="TabC/Controls/MarginC/GridC"]
+margin_right = 324.0
+margin_bottom = 73.0
+custom_fonts/font = SubResource( 7 )
+text = "Movement"
+
+[node name="WASD" type="Label" parent="TabC/Controls/MarginC/GridC"]
+margin_left = 1377.0
+margin_top = 8.0
+margin_right = 1586.0
+margin_bottom = 65.0
+custom_colors/font_color = Color( 1, 0.47451, 0.776471, 1 )
+custom_fonts/font = SubResource( 12 )
+text = "W/A/S/D"
+
+[node name="RunLabel" type="Label" parent="TabC/Controls/MarginC/GridC"]
+margin_top = 133.0
+margin_right = 324.0
+margin_bottom = 206.0
+custom_fonts/font = SubResource( 7 )
+text = "Run"
+
+[node name="Shift" type="Label" parent="TabC/Controls/MarginC/GridC"]
+margin_left = 1377.0
+margin_top = 141.0
+margin_right = 1586.0
+margin_bottom = 198.0
+custom_colors/font_color = Color( 1, 0.47451, 0.776471, 1 )
+custom_fonts/font = SubResource( 12 )
+text = "Shift"
+
+[node name="Flashlight" type="Label" parent="TabC/Controls/MarginC/GridC"]
+margin_top = 266.0
+margin_right = 324.0
+margin_bottom = 339.0
+custom_fonts/font = SubResource( 7 )
+text = "Flashlight"
+
+[node name="F" type="Label" parent="TabC/Controls/MarginC/GridC"]
+margin_left = 1377.0
+margin_top = 274.0
+margin_right = 1586.0
+margin_bottom = 331.0
+custom_colors/font_color = Color( 1, 0.47451, 0.776471, 1 )
+custom_fonts/font = SubResource( 12 )
+text = "F"
+
+[node name="Radar" type="Label" parent="TabC/Controls/MarginC/GridC"]
+margin_top = 399.0
+margin_right = 324.0
+margin_bottom = 472.0
+custom_fonts/font = SubResource( 7 )
+text = "Radar"
+
+[node name="Q" type="Label" parent="TabC/Controls/MarginC/GridC"]
+margin_left = 1377.0
+margin_top = 407.0
+margin_right = 1586.0
+margin_bottom = 464.0
+custom_colors/font_color = Color( 1, 0.47451, 0.776471, 1 )
+custom_fonts/font = SubResource( 12 )
+text = "Q"
+
+[node name="Map" type="Label" parent="TabC/Controls/MarginC/GridC"]
+margin_top = 532.0
+margin_right = 324.0
+margin_bottom = 605.0
+custom_fonts/font = SubResource( 7 )
+text = "Map"
+
+[node name="Tab" type="Label" parent="TabC/Controls/MarginC/GridC"]
+margin_left = 1377.0
+margin_top = 540.0
+margin_right = 1586.0
+margin_bottom = 597.0
+custom_colors/font_color = Color( 1, 0.47451, 0.776471, 1 )
+custom_fonts/font = SubResource( 12 )
+text = "Tab"
