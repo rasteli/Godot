@@ -19,6 +19,7 @@ config/icon="res://icon.png"
 GameManager="*res://Scripts/GameManager.gd"
 Loader="*res://Scripts/Loader.gd"
 Scenes="*res://Scripts/Scenes.gd"
+PlayerInventory="*res://Scripts/PlayerInventory.gd"
 
 [display]
 

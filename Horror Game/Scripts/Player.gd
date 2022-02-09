@@ -1,7 +1,6 @@
 extends KinematicBody
 
 signal open_map
-signal enable_term
 
 export var ACCEL = 4.5
 export var DEACCEL = 16
@@ -25,9 +24,6 @@ var hit : bool
 var radar : bool
 var crouching : bool
 
-var has_radar : bool
-var has_flashlight : bool
-
 var action : String
 var collider_root : Object
 
@@ -35,6 +31,8 @@ var vel = Vector3()
 var dir = Vector3()
 
 func _ready():
+	PlayerInventory.reset()
+
 	speed = NORMAL_SPEED
 	roatation_speed = NORMAL_ROTATION_SPEED
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -46,7 +44,7 @@ func _physics_process(delta):
 		process_input(delta)
 		process_movement(delta)
 
-	if Input.is_action_just_pressed("map") and has_radar:
+	if Input.is_action_just_pressed("map") and PlayerInventory.has_pda:
 		toggle_map_cam()
 
 	var collider = ray_cast.get_collider()
@@ -56,36 +54,43 @@ func _physics_process(delta):
 		hit = true
 		collider_root = GameManager.get_node_root_node(collider, 2)
 
-		if name == "term_error":
-			action = "enable"
-		elif name == "LetterBody":
-			action = "read"
-		elif name == "LeverBody" and not collider_root.enabled:
-			action = "open"
-		elif name == "FlashBody" or name == "PDABody":
-			action = "pick up"
+		var actions = {
+			"LeverBody": "open",
+			"PDABody": "pick up",
+			"LetterBody": "read",
+			"FlashBody": "pick up",
+			"TermErrBody": "enable"
+		}
+
+		if actions.has(name):
+			action = actions[name]
 		else:
 			hit = false
 	else:
 		hit = false
 
-	GameManager.toggle_interact_input(hit, collider_root)
 	camera.fov = GameManager.main_camera_fov
 	MOUSE_SENSITIVITY = GameManager.mouse_sense
+
+	if collider_root:
+		# If action is "open", the collider's root has a boolean property called "enabled."
+		# If this property is true, there's no need to show the interact input,
+		# because pressing the interaction button wouldn't do anything.
+		if action == "open" and collider_root.enabled:
+			hit = false
+
+		GameManager.toggle_interact_input(hit, collider_root)
 
 func toggle_map_cam():
 	map = not map
 	$OnOffMap.play()
+	emit_signal("open_map", map)
 
 	if map:
-		emit_signal("open_map", true)
-
 		$MapLoop.play()
 		camera.clear_current(false)
 		$MapCam.make_current()
 	else:
-		emit_signal("open_map", false)
-
 		$MapLoop.stop()
 		$MapCam.clear_current(false)
 		camera.make_current()
@@ -103,19 +108,21 @@ func process_input(delta):
 	# ----------------------------------
 	# Interaction
 	if Input.is_action_just_pressed("interact") and hit:
-		if action == "enable":
-			emit_signal("enable_term")
-			GameManager.enable_terminal(collider_root)
-		elif action == "read":
-			GameManager.toggle_letter(collider_root)
-		elif action == "open":
-			GameManager.enable_lever(collider_root)
+		var actions = {
+			"enable": funcref(GameManager, "enable_terminal"),
+			"read": funcref(GameManager, "toggle_letter"),
+			"open": funcref(GameManager, "enable_lever"),
+		}
+
+		if actions.has(action):
+			var action_func = actions[action]
+			action_func.call_func(collider_root)
 		elif action == "pick up":
-			GameManager.pickup(collider_root)
+			GameManager.pickup(collider_root, collider_root.name)
 
 	# ----------------------------------
 	# Radar
-	if Input.is_action_just_pressed("radar") and has_radar:
+	if Input.is_action_just_pressed("radar") and PlayerInventory.has_pda:
 		$Radar.play()
 		radar = true
 	if Input.is_action_just_released("radar"):
@@ -157,7 +164,7 @@ func process_input(delta):
 		roatation_speed = NORMAL_ROTATION_SPEED
 		$Footstep.pitch_scale = 0.7
 
-	if Input.is_action_just_pressed("toggle_flashlight") and has_flashlight:
+	if Input.is_action_just_pressed("toggle_flashlight") and PlayerInventory.has_flashlight:
 		flashlight.visible = not flashlight.visible
 		$"../Flashlight".play()
 

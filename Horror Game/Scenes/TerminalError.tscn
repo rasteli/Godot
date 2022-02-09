@@ -124,10 +124,10 @@ mesh = SubResource( 6 )
 skeleton = NodePath("../RootNode")
 material/0 = SubResource( 8 )
 
-[node name="term_error" type="StaticBody" parent="Body" index="0"]
+[node name="TermErrBody" type="StaticBody" parent="Body" index="0"]
 collision_layer = 16
 
-[node name="CollisionShape" type="CollisionShape" parent="Body/term_error" index="0"]
+[node name="CollisionShape" type="CollisionShape" parent="Body/TermErrBody" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 1.13687e-13, 1, -1.69897e-06, -0.00290962, 0.00692613 )
 shape = SubResource( 5 )
 

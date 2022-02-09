@@ -8,6 +8,8 @@ onready var settings_bg = $SettingsBG
 onready var settings_menu = $SettingsMenu
 
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
 	quit_btn.connect("pressed", self, "quit_game")
 	start_btn.connect("pressed", self, "new_game")
 	settings_btn.connect("pressed", self, "open_settings")

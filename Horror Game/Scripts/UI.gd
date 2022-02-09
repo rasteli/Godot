@@ -4,7 +4,7 @@ onready var player = $"../Player/PlayerBody"
 
 func _ready():
 	player.connect("open_map", self, "toggle_crosshair")
-	player.connect("enable_term", self, "set_term_count_label")
+	GameManager.connect("enable_term", self, "set_term_count_label")
 
 func _process(delta):
 	$FPS.visible = GameManager.fps_enabled
